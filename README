@@ -1,0 +1,60 @@
+PCE Flash GUI - (c) 2022 Jouni 'Mr.Spiv' Korhonen
+
+NOTE! I COULD NOT VERIFY THE FLASHING WORKS. LIKELY MY CARD IS DUD SINCE
+NO ROM WORKED EVEN IF USING THE ORIGINAL WINDOWS FLASH TOOL. I am still
+putting this code out as I need to move on to the next thing ;)
+
+This single file python3 monster is both tkinter and command line based
+flash cart programming utility for Gaming Enterprises' low cost Flash
+HuCard, see http://www.gamingenterprisesinc.com/Flash_HuCard/
+
+The project was initiated due four reasons:
+ - I found this HuCard from my stash of stuff and did not even remember
+   I had purchased one;
+ - There was no OSX flash utility for it;
+ - I needed to code something after a long hiatus;
+ - This project served as a reason to dig into tktiner and Python GUIs.
+
+You need to have both "serial" and "tkinter" modules installed.
+
+If you start the "pypce.py" without any command line arguments then a
+GUI version of the flash tool is started.
+
+If you pass any switches then the flash tool will be run as a conventional
+command line shell tool. See the options below.
+
+jounis-MacBook-Pro:flasher jouni$ python3 pypce.py -h
+usage: pypce.py [-h] [--input input_file] [--output output_file] [--flash] [--patch_usa] [--jpn] [--remove]
+                [--port usb_port]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --input input_file, -i input_file
+                        ROM file to load
+  --output output_file, -o output_file
+                        ROM file to save instead of flashing
+  --flash, -f           Flash ROM file
+  --patch_usa, -u       Attempt patching USA region protection
+  --jpn, -j             Make USA ROM to Japan ROM (reverse bytes)
+  --remove, -r          Remove possible ROM header
+  --port usb_port, -p usb_port
+                        Force USB Serial port
+
+Few notes about the HuCart. It defaults to USA so in order to run any 
+ROMs in Japanese PC Engine you need to convert the ROM using the tool.
+The orginal ROM file remain unmodified.
+
+Thinking out loud..
+Currently all required classes and codes are placed into a single python
+file. They could easily be divided into multiple files and make the project
+look like a bit more organized.. maybe in some future version.
+
+I have not done extreme testing with this program.. so bugs are to be
+found and fixed along time.
+
+TODO:
+- Handle ROM sizes that require mirroring. Currently there is no required
+  mirroring check or 'fix' implemented.
+
+
+
